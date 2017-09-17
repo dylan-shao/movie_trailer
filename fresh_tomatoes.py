@@ -56,6 +56,9 @@ main_page_head = '''
             top: 0;
             background-color: white;
         }
+        span {
+            display: block;
+        }
     </style>
     <script type="text/javascript" charset="utf-8">
         // Pause the video when the modal is closed
@@ -123,8 +126,15 @@ main_page_content = '''
 # A single movie entry html template
 movie_tile_content = '''
 <div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">
-    <div><img src="{poster_image_url}" width="220" height="auto"></div>
-    <h2>{movie_title} (rating: {movie_rating})</h2>
+    <div><img src="{poster_image_url}" width="auto" height="220"></div>
+    <div><h3>{movie_title}</h3></div>
+    <div>
+        <p> 
+            <span>{movie_storyline}</span>
+            <span></span>
+            <span>(rating: {movie_rating}) </span>
+        </p>
+    </div>
 </div>
 '''
 
@@ -144,6 +154,7 @@ def create_movie_tiles_content(movies):
             movie_title=movie.title,
             poster_image_url=movie.poster_image_url,
             trailer_youtube_id=trailer_youtube_id,
+            movie_storyline = movie.storyline,
             movie_rating=movie.rating
         )
     return content
